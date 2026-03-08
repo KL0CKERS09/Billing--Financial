@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;600;700&display=swap');
+
+@theme {
+  --color-primary:       #0A4F29;
+  --color-primary-dark:  #0d6334;
+  --color-light:         #A7CDBB;
+  --color-bg:            #F0FFF0;
+  --font-family-sans:    'DM Sans', sans-serif;
+}
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-5 py-2.5 bg-primary text-white rounded-lg text-sm font-semibold cursor-pointer
+           hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply px-5 py-2.5 bg-white text-gray-600 border border-gray-200 rounded-lg text-sm
+           cursor-pointer hover:bg-gray-50 transition-colors;
+  }
+  .btn-outline-primary {
+    @apply px-5 py-2.5 bg-white text-primary border border-primary rounded-lg text-sm
+           font-semibold cursor-pointer hover:bg-[#F0FFF0] transition-colors;
+  }
+  .badge-billed   { @apply inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#f0fff0] text-green-800; }
+  .badge-pending  { @apply inline-block px-3 py-1 rounded-full text-xs font-semibold bg-yellow-50 text-yellow-800; }
+  .badge-cancelled{ @apply inline-block px-3 py-1 rounded-full text-xs font-semibold bg-red-50 text-red-700; }
+  .card { @apply bg-white border border-gray-200 rounded-xl p-5; }
+  .w-card-header  { @apply bg-[#6e9c87] text-white px-5 py-3 text-sm font-semibold flex items-center gap-2; }
+  .input          { @apply w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm font-[inherit]
+                           outline-none focus:border-primary transition-colors bg-[#fafafa]; }
+  .table-th       { @apply px-4 py-3 text-left text-sm font-semibold text-gray-600 border-b border-gray-200
+                           bg-[#f0fff0] whitespace-nowrap; }
+  .table-td       { @apply px-4 py-3 text-sm text-gray-600 border-b border-gray-100 align-middle; }
+}
+
+/* Print styles */
+@media print {
+  body * { visibility: hidden; }
+  .receipt-area, .receipt-area * { visibility: visible; }
+  .receipt-area { position: fixed; inset: 0; background: white; z-index: 9999; padding: 2rem; }
+  .print-area, .print-area * { visibility: visible; }
+  .print-area { position: fixed; inset: 0; background: white; padding: 2rem; z-index: 9999; }
+}
